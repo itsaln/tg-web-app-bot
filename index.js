@@ -50,8 +50,14 @@ bot.on('message', async (msg) => {
 	}
 })
 
+app.get('/', async () => {
+	console.log('Salamalekum API')
+})
+
 app.post('/web-data',  async (req, res) => {
-	const { queryId, products, totalPrice } = req.body
+	const { queryId, products = [], totalPrice } = req.body
+	
+	console.log('products:---', products)
 	
 	try {
 		await bot.answerWebAppQuery(queryId, {
@@ -59,7 +65,7 @@ app.post('/web-data',  async (req, res) => {
 			id: queryId,
 			title: 'Успешная покупка',
 			input_message_content: {
-				message_text: `Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}`
+				message_text: `Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map((item) => item.title).join(', ')}`
 			}
 		})
 		
