@@ -2,8 +2,8 @@ const TelegramBot = require('node-telegram-bot-api')
 const express = require('express')
 const cors = require('cors')
 
-const token = process.env.BOT_TOKEN
-const webAppUrl = process.env.WEB_APP_URL
+const token = '7110440755:AAF2Yc1QvRuFS70Px-mDNeg4ajfXDKAxyhA'
+const webAppUrl = 'https://timely-biscuit-6712de.netlify.app'
 
 const bot = new TelegramBot(token, { polling: true })
 const app = express()
@@ -78,6 +78,6 @@ app.post('/web-data',  async (req, res) => {
 	}
 })
 
-const PORT = 8000
+const PORT = 5200
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
