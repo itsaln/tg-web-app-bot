@@ -50,10 +50,6 @@ bot.on('message', async (msg) => {
 	}
 })
 
-app.get('/', async () => {
-	console.log('Salamalekum API')
-})
-
 app.post('/web-data',  async (req, res) => {
 	const { queryId, products = [], totalPrice } = req.body
 	
