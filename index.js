@@ -2,10 +2,10 @@ const TelegramBot = require('node-telegram-bot-api')
 const express = require('express')
 const cors = require('cors')
 
-const token = '7110440755:AAF2Yc1QvRuFS70Px-mDNeg4ajfXDKAxyhA'
-const webAppUrl = 'https://timely-biscuit-6712de.netlify.app'
+const token = process.env.BOT_TOKEN
+const webAppUrl = process.env.WEB_APP_URL
 
-const bot = new TelegramBot(token, {polling: true})
+const bot = new TelegramBot(token, { polling: true })
 const app = express()
 
 app.use(express.json())
@@ -19,7 +19,7 @@ bot.on('message', async (msg) => {
 		await bot.sendMessage(chatId, 'Ниже появится кнопка, заполнить форму', {
 			reply_markup: {
 				keyboard: [
-					[{text: 'Заполнить форму', web_app: {url: webAppUrl + '/form'}}]
+					[{text: 'Заполнить форму', web_app: { url: webAppUrl + '/form' }}]
 				]
 			}
 		})
@@ -27,7 +27,7 @@ bot.on('message', async (msg) => {
 		await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
 			reply_markup: {
 				inline_keyboard: [
-						[{text: 'Сделать заказ', web_app: {url: webAppUrl}}]
+						[{text: 'Сделать заказ', web_app: { url: webAppUrl }}]
 				]
 			}
 		})
